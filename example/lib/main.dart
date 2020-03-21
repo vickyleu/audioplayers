@@ -13,7 +13,9 @@ import 'player_widget.dart';
 
 typedef void OnError(Exception exception);
 
-const kUrl1 = 'https://luan.xyz/files/audio/ambient_c_motion.mp3';
+const kUrl1 =
+    'http://183.238.178.195:8989/group1/M00/00/03/CgAH0150bZ6AeFb4AAFxoecf98I023.aac';
+//const kUrl1 = 'https://luan.xyz/files/audio/ambient_c_motion.mp3';
 const kUrl2 = 'https://luan.xyz/files/audio/nasa_on_a_mission.mp3';
 const kUrl3 = 'http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1xtra_mf_p';
 
