@@ -571,8 +571,6 @@ class AudioPlayer {
         player.durationHandler?.call(newDuration);
         break;
       case 'audio.onCurrentPosition':
-        print(
-            "audio.onCurrentPositionaudio.onCurrentPosition+++++++======>妈了个八字 ${value}");
         Duration newDuration = Duration(milliseconds: value);
         player._positionController.add(newDuration);
         // ignore: deprecated_member_use_from_same_package
