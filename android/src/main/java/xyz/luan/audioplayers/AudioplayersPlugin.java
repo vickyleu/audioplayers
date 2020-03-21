@@ -3,6 +3,7 @@ package xyz.luan.audioplayers;
 import android.os.Build;
 import android.content.Context;
 import android.os.Handler;
+import android.util.Log;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
@@ -40,6 +41,12 @@ public class AudioplayersPlugin implements MethodCallHandler {
 
     @Override
     public void onMethodCall(final MethodCall call, final MethodChannel.Result response) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }).start();
         try {
             handleMethodCall(call, response);
         } catch (Exception e) {
@@ -62,15 +69,25 @@ public class AudioplayersPlugin implements MethodCallHandler {
                 final boolean stayAwake = call.argument("stayAwake");
                 player.configAttributes(respectSilence, stayAwake, context.getApplicationContext());
                 player.setVolume(volume);
-                player.setUrl(url, isLocal, context.getApplicationContext());
-                if (position != null && !mode.equals("PlayerMode.LOW_LATENCY")) {
-                    player.seek(position);
-                }
-                player.play(context.getApplicationContext());
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        player.setUrl(url, isLocal, context.getApplicationContext());
+                        if (position != null && !mode.equals("PlayerMode.LOW_LATENCY")) {
+                            player.seek(position);
+                        }
+                        player.play(context.getApplicationContext());
+                    }
+                }).start();
                 break;
             }
             case "resume": {
-                player.play(context.getApplicationContext());
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        player.play(context.getApplicationContext());
+                    }
+                }).start();
                 break;
             }
             case "pause": {
@@ -87,7 +104,12 @@ public class AudioplayersPlugin implements MethodCallHandler {
             }
             case "seek": {
                 final Integer position = call.argument("position");
-                player.seek(position);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        player.seek(position);
+                    }
+                }).start();
                 break;
             }
             case "setVolume": {
@@ -98,7 +120,12 @@ public class AudioplayersPlugin implements MethodCallHandler {
             case "setUrl": {
                 final String url = call.argument("url");
                 final boolean isLocal = call.argument("isLocal");
-                player.setUrl(url, isLocal, context.getApplicationContext());
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        player.setUrl(url, isLocal, context.getApplicationContext());
+                    }
+                }).start();
                 break;
             }
             case "setPlaybackRate": {
@@ -203,7 +230,6 @@ public class AudioplayersPlugin implements MethodCallHandler {
             final MethodChannel channel = this.channel.get();
             final Handler handler = this.handler.get();
             final AudioplayersPlugin audioplayersPlugin = this.audioplayersPlugin.get();
-
             if (mediaPlayers == null || channel == null || handler == null || audioplayersPlugin == null) {
                 if (audioplayersPlugin != null) {
                     audioplayersPlugin.stopPositionUpdates();

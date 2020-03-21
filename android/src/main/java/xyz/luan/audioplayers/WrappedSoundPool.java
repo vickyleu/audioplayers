@@ -287,7 +287,7 @@ public class WrappedSoundPool extends Player {
             return tempFile;
         } catch (IOException e) {
             throw new RuntimeException(e);
-        } finally {
+        }  finally {
             try {
                 if (fileOutputStream != null) {
                     fileOutputStream.close();
@@ -310,12 +310,11 @@ public class WrappedSoundPool extends Player {
             while ((bytesRead = stream.read(chunk)) > 0) {
                 outputStream.write(chunk, 0, bytesRead);
             }
-        }catch (Exception e){
-            Log.e("ExceptionExceptionException",""+e.getMessage());
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         } finally {
             try {
+                if(stream!=null)
                 stream.close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
