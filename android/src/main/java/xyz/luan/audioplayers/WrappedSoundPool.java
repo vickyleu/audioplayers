@@ -310,7 +310,8 @@ public class WrappedSoundPool extends Player {
             while ((bytesRead = stream.read(chunk)) > 0) {
                 outputStream.write(chunk, 0, bytesRead);
             }
-
+        }catch (Exception e){
+            Log.e("ExceptionExceptionException",""+e.getMessage());
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
