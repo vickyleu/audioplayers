@@ -312,8 +312,8 @@ public class WrappedSoundPool extends Player {
             }
         }catch (Exception e){
             Log.e("ExceptionExceptionException",""+e.getMessage());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
         } finally {
             try {
                 stream.close();
