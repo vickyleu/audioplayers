@@ -171,8 +171,7 @@ class AudioPlayer {
   AudioPlayerState get state => _audioPlayerState;
 
   set state(AudioPlayerState state) {
-    if(!_playerStateController.isClosed)
-    _playerStateController.add(state);
+    if (!_playerStateController.isClosed) _playerStateController.add(state);
     // ignore: deprecated_member_use_from_same_package
     audioPlayerStateChangeHandler?.call(state);
     _audioPlayerState = state;
