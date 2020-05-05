@@ -168,7 +168,7 @@ class AudioplayersPlugin {
       case 'setReleaseMode':
         {
           ReleaseMode releaseMode =
-          parseReleaseMode(call.arguments['releaseMode']);
+              parseReleaseMode(call.arguments['releaseMode']);
           getOrCreatePlayer(playerId).setReleaseMode(releaseMode);
           return 1;
         }
@@ -183,7 +183,7 @@ class AudioplayersPlugin {
         throw PlatformException(
           code: 'Unimplemented',
           details:
-          "The audioplayers plugin for web doesn't implement the method '$method'",
+              "The audioplayers plugin for web doesn't implement the method '$method'",
         );
     }
   }
