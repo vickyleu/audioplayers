@@ -25,4 +25,4 @@ flutter:
     - assets/messenger.mp3
 
 environment:
-  sdk: ">=2.0.0-dev.50.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
