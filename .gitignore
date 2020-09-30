@@ -6,6 +6,8 @@
 .dart_tool/
 .pub/
 build/
+**.flutter-plugins
+**.flutter-plugins-dependencies
 ios/.generated/
 packages
 .classpath
@@ -14,5 +16,4 @@ packages
 .vscode
 testing
 *pubspec.lock
-.flutter-plugins-dependencies
 flutter_export_environment.sh
