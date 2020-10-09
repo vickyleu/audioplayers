@@ -535,7 +535,7 @@ isNotification: (bool) respectSilence
         AVPlayer *player = playerInfo[@"player"];
         [ player setVolume:volume ];
         [ player seekToTime:time ];
-
+ float playbackRate = [playerInfo[@"rate"] floatValue];
 #if TARGET_OS_IPHONE
         if (@available(iOS 10.0, *)) {
             [player playImmediatelyAtRate:playbackRate];
