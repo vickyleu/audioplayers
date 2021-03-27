@@ -533,8 +533,11 @@ isNotification: (bool) respectSilence
           onReady:^(NSString * playerId) {
         NSMutableDictionary * playerInfo = players[playerId];
         AVPlayer *player = playerInfo[@"player"];
-        [ player setVolume:volume ];
-        [ player seekToTime:time ];
+        [player setVolume:0.0f]; //start it at zero
+
+
+        [player seekToTime:time ];
+        [player pause];
  float playbackRate = [playerInfo[@"rate"] floatValue];
 #if TARGET_OS_IPHONE
         if (@available(iOS 10.0, *)) {
@@ -550,6 +553,7 @@ isNotification: (bool) respectSilence
         }
 #endif
 
+        [player setVolume:volume ];
 
         [ playerInfo setObject:@true forKey:@"isPlaying" ];
     }
